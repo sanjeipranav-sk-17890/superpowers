@@ -94,6 +94,34 @@ To update:
 gemini extensions update superpowers
 ```
 
+### GitHub Copilot (VS Code / CLI / github.com)
+
+Superpowers works with GitHub Copilot through custom instruction files that are automatically picked up — no plugin installation needed.
+
+**For repositories that already include Superpowers:** If the repository contains `.github/copilot-instructions.md`, `AGENTS.md`, and `.github/instructions/`, Copilot will automatically use them. Nothing else is needed.
+
+**For new repositories:** Copy these files from this repo into your project:
+
+```bash
+git clone https://github.com/obra/superpowers.git /tmp/superpowers
+cp /tmp/superpowers/.github/copilot-instructions.md .github/
+cp /tmp/superpowers/AGENTS.md .
+mkdir -p .github/instructions
+cp /tmp/superpowers/.github/instructions/*.instructions.md .github/instructions/
+```
+
+Commit the files to your repository.
+
+**Copilot in VS Code:** Instructions are automatically loaded when you open a repository that contains them. Ensure "Enable custom instructions" is turned on in settings (it is on by default).
+
+**Copilot CLI:** Instructions from `.github/copilot-instructions.md` and `AGENTS.md` are automatically used when running `gh copilot` commands inside the repository directory.
+
+**Copilot on github.com (Coding Agent):** The coding agent reads `AGENTS.md` and `.github/copilot-instructions.md` automatically when working on the repository.
+
+**Verify it works:** Start a Copilot Chat session and ask for help planning a feature. Copilot should ask clarifying questions and follow the brainstorm-first workflow instead of jumping straight to code.
+
+**Detailed docs:** [docs/README.copilot.md](docs/README.copilot.md)
+
 ### Verify Installation
 
 Start a new session in your chosen platform and ask for something that should trigger a skill (for example, "help me plan this feature" or "let's debug this issue"). The agent should automatically invoke the relevant superpowers skill.
